@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useState } from "react";
 import StartFirebase from "./firebaseconfig/firebase";
 import Navbar from "./components/Navbar";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -14,35 +14,13 @@ import Pagenotfound from "./pages/Pagenotfound";
 
 export const MapContext = createContext();
 function App() {
-  const [db, setDb] = useState(null);
-
   const [mapstate, setMapstate] = useState({
     showingInfoWindow: false,
     activeMarker: {},
     selectedPlace: {},
   });
-  const [email, setEmail] = useState("");
-  // { lat: 19.2183, lng: 72.9781 }
-  let [cords, setCords] = useState([]);
-  useEffect(() => {
-    getdb(db);
-  }, []);
-
-  const getdb = async (db) => {
-    try {
-      const newdb = await StartFirebase();
-      setDb(newdb);
-      const localemail = localStorage.getItem("email");
-      const ans = getUserFromEmail(localemail);
-      const res = await selectData(newdb, ans);
-      const newcords = cords.concat([
-        { lat: parseFloat(res.lat), lng: parseFloat(res.lng) },
-      ]);
-      setCords(newcords);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const [cords, setCords] = useState([]);
+  const [time, setTime] = useState(120);
 
   return (
     <BrowserRouter>
@@ -52,10 +30,8 @@ function App() {
           setMapstate,
           cords,
           setCords,
-          db,
-          setDb,
-          email,
-          setEmail,
+          time,
+          setTime,
         }}
       >
         <div>

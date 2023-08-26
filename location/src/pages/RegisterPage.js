@@ -13,14 +13,14 @@ import { MapContext } from "../App";
 export default function RegisterPage() {
   const host = process.env.REACT_APP_API;
   const [name, setName] = useState("");
-  const { email, setEmail } = useContext(MapContext);
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [cpassword, setCpassword] = useState("");
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (password === cpassword) {
-      const response = await fetch(`${host}/api/auth/createuser`, {
+      const response = await fetch(`${host}/api/v1/auth/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -14,12 +14,12 @@ import { MapContext } from "../App";
 export default function LoginPage() {
   const host = process.env.REACT_APP_API;
   const [password, setPassword] = useState("");
-  const { email, setEmail } = useContext(MapContext);
+  const [email, setEmail] = useState("");
 
   let navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch(`${host}/api/auth/login`, {
+    const response = await fetch(`${host}/api/v1/auth/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -33,7 +33,6 @@ export default function LoginPage() {
     const json = await response.json();
     if (json.success) {
       localStorage.setItem("token", json.authToken);
-      localStorage.setItem("email", email);
       navigate("/");
       setTimeout(() => {
         enqueueSnackbar("Logged in Succesfully", { variant: "success" });
