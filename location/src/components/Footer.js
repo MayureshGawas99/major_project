@@ -2,20 +2,11 @@ import React, { useContext } from "react";
 import { MapContext } from "../App";
 
 export default function Footer() {
-  const { time, cords } = useContext(MapContext);
+  const { time } = useContext(MapContext);
 
   return (
-    <div>
+    <div className="fixed-bottom">
       <p className="text-center">Page Updates in {time} Seconds</p>
-      <div>
-        <ul>
-          {cords.map(({ lat, lng }, index) => (
-            <li key={index}>
-              {lat},{lng}
-            </li>
-          ))}
-        </ul>
-      </div>
     </div>
   );
 }

@@ -66,11 +66,7 @@ export default function Navbar() {
             {!localStorage.getItem("token") ? (
               <p></p>
             ) : (
-              <button
-                className="btn btn-primary"
-                role="button"
-                onClick={handleLogout}
-              >
+              <button className="btn btn-primary" onClick={handleLogout}>
                 Logout
               </button>
             )}

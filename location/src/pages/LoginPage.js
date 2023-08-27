@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   MDBContainer,
@@ -9,7 +9,6 @@ import {
   MDBCheckbox,
 } from "mdb-react-ui-kit";
 import { enqueueSnackbar } from "notistack";
-import { MapContext } from "../App";
 
 export default function LoginPage() {
   const host = process.env.REACT_APP_API;
@@ -50,7 +49,7 @@ export default function LoginPage() {
             <img
               src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
               className="img-fluid"
-              alt="Phone image"
+              alt="Login"
             />
           </MDBCol>
           <MDBCol col="4" md="4">

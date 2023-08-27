@@ -1,13 +1,12 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import GoogleMap from "../components/GoogleMap";
 import { useNavigate } from "react-router-dom";
-import { getUserFromEmail, selectData } from "../firebaseconfig/CRUD";
 import { MapContext } from "../App";
 import Footer from "../components/Footer";
 import axios from "axios";
 
 export default function HomePage() {
-  const { cords, setCords, time, setTime } = useContext(MapContext);
+  const { cords, setCords, setTime } = useContext(MapContext);
   const navigate = useNavigate();
   useEffect(() => {
     if (localStorage.getItem("token")) {
@@ -31,7 +30,7 @@ export default function HomePage() {
         if (response.status === 200) {
           const { lat, lng } = response.data.cords;
           let newCords = { lat: lat, lng: lng };
-          setCords((cords) => [...cords, newCords]);
+          setCords(newCords);
           // console.log(cords);
         } else {
           console.error("Failed to fetch data:", response.status);
@@ -51,7 +50,7 @@ export default function HomePage() {
 
     // Set up an interval to fetch data every 2 minutes
     const intervalId = setInterval(() => {
-      fetchData();
+      window.location.reload();
     }, 120000); // 2 minutes in milliseconds
 
     // Set up an interval to update the time remaining every second
@@ -67,29 +66,9 @@ export default function HomePage() {
   }, []);
 
   return (
-    <div style={{ width: "100%", height: "500px" }}>
-      <h2 className="text-center">Live Location {cords.length}</h2>
-      {/* <div>
-        <h1>Data Fetcher</h1>
-        <div>
-          <h2>Fetched Data:</h2>
-          <pre>{JSON.stringify(cords, null, 2)}</pre>
-        </div>
-        <div>
-          <p>Time remaining for the next fetch: {time} seconds</p>
-        </div>
-      </div> */}
-      <button
-        onClick={() => {
-          let newCords = cords.concat([{ lat: 15, lng: 20 }]);
-          setCords(newCords);
-          console.log(cords);
-        }}
-      >
-        add
-      </button>
-
-      {/* {cords.length !== 0 && <GoogleMap />} */}
+    <div className="child">
+      <h2 className="text-center">Live Location</h2>
+      {cords && <GoogleMap />}
       <Footer />
     </div>
   );
