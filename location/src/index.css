@@ -33,15 +33,3 @@
   color: white;
   background-color: black;
 }
-
-.root {
-  display: flex;
-  flex-direction: row; /* Or 'row' depending on your layout */
-  height: 100vh; /* Set the desired height of the parent */
-  /* width: 500px; Set the desired width of the parent */
-}
-
-.child {
-  flex-grow: 1;
-  /* The child will take up all available space */
-}

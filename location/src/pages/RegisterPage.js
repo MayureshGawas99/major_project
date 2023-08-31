@@ -15,6 +15,9 @@ export default function RegisterPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [cpassword, setCpassword] = useState("");
+  const [mac, setMac] = useState("");
+  const [phone, setPhone] = useState("");
+  const [address, setAddress] = useState("");
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -28,12 +31,15 @@ export default function RegisterPage() {
           name: name,
           email: email,
           password: password,
+          mac: mac,
+          phone: phone,
+          address: address,
         }),
       });
       const json = await response.json();
       if (json.success) {
         localStorage.setItem("token", json.authToken);
-        navigate("/login");
+        navigate("/");
         setTimeout(() => {
           enqueueSnackbar("Succesfully Registered", { variant: "success" });
         }, 500);
@@ -55,64 +61,95 @@ export default function RegisterPage() {
               alt="Login"
             />
           </MDBCol>
-          <MDBCol col="4" md="4">
+          <MDBCol col="4" md="4" className="">
             <form onSubmit={handleSubmit}>
               <MDBInput
-                wrapperClass="mb-2"
-                label="Name"
+                wrapperClass="mb-3"
                 id="name"
                 type="text"
-                size="lg"
+                size="md"
                 value={name}
+                placeholder="Name"
                 required
                 onChange={(e) => setName(e.target.value)}
               />
               <MDBInput
-                wrapperClass="mb-2"
-                label="Email address"
+                wrapperClass="mb-3"
+                placeholder="MAC Address"
+                id="mac"
+                type="text"
+                size="md"
+                value={mac}
+                required
+                onChange={(e) => setMac(e.target.value)}
+              />
+              <MDBInput
+                wrapperClass="mb-3"
+                placeholder="Email address"
                 id="email"
                 type="email"
-                size="lg"
+                size="md"
                 value={email}
                 required
                 onChange={(e) => setEmail(e.target.value)}
               />
               <MDBInput
-                wrapperClass="mb-2"
-                label="Password"
+                wrapperClass="mb-3"
+                placeholder="Password"
                 id="password"
                 type="password"
-                size="lg"
+                size="md"
                 value={password}
                 required
                 onChange={(e) => setPassword(e.target.value)}
               />
               <MDBInput
-                wrapperClass="mb-2"
-                label="Confirm Password"
+                wrapperClass="mb-3"
+                placeholder="Confirm Password"
                 id="cpassword"
                 type="password"
-                size="lg"
+                size="md"
                 value={cpassword}
                 required
                 onChange={(e) => setCpassword(e.target.value)}
               />
-
-              <MDBBtn className="mb-4 w-100" size="lg" type="submit">
-                Register
+              <MDBInput
+                wrapperClass="mb-3"
+                placeholder="Phone No."
+                id="phone"
+                type="text"
+                size="md"
+                value={phone}
+                required
+                onChange={(e) => setPhone(e.target.value)}
+              />
+              <MDBInput
+                wrapperClass="mb-3"
+                placeholder="Confirm Password"
+                id="address"
+                type="text"
+                size="md"
+                value={address}
+                required
+                onChange={(e) => setAddress(e.target.value)}
+              />
+              {/* <div className="d-flex justify-content-center"> */}
+              <MDBBtn className="my-2 w-100" size="md" type="submit">
+                <b>REGISTER</b>
+              </MDBBtn>
+              {/* </div> */}
+              <div className="divider d-flex justify-content-center align-items-center ">
+                <p className="text-center fw-bold mx-3 mb-0">OR</p>
+              </div>
+              <MDBBtn
+                className="my-2 w-100"
+                size="md"
+                style={{ backgroundColor: "#3b5998" }}
+                onClick={() => navigate("/login")}
+              >
+                <b>LOGIN</b>
               </MDBBtn>
             </form>
-            <div className="divider d-flex justify-content-center align-items-center my-4">
-              <p className="text-center fw-bold mx-3 mb-0">OR</p>
-            </div>
-            <MDBBtn
-              className="mb-4 w-100"
-              size="lg"
-              style={{ backgroundColor: "#3b5998" }}
-              onClick={() => navigate("/login")}
-            >
-              Login
-            </MDBBtn>
           </MDBCol>
         </MDBRow>
       </MDBContainer>

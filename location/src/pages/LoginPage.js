@@ -55,27 +55,27 @@ export default function LoginPage() {
           <MDBCol col="4" md="4">
             <form onSubmit={handleSubmit}>
               <MDBInput
-                wrapperclassName="mb-5"
-                label="Email address"
+                wrapperClass="mb-3"
+                placeholder="Email"
                 id="formControlLg"
                 type="email"
-                size="lg"
+                size="md"
                 value={email}
                 required
                 onChange={(e) => setEmail(e.target.value)}
               />
               <MDBInput
-                wrapperclassName="mb-4"
-                label="Password"
+                wrapperClass="mb-3"
+                placeholder="Password"
                 id="formControlLg"
                 type="password"
-                size="lg"
+                size="md"
                 value={password}
                 required
                 onChange={(e) => setPassword(e.target.value)}
               />
 
-              <div className="d-flex justify-content-between mx-4 mb-4">
+              <div className="d-flex justify-content-between mb-3">
                 <MDBCheckbox
                   name="flexCheck"
                   value=""
@@ -85,23 +85,23 @@ export default function LoginPage() {
                 <a href="!#">Forgot password?</a>
               </div>
 
-              <MDBBtn className="mb-4 w-100" size="lg" type="submit">
-                Login
+              <MDBBtn className="mb-3 w-100" size="md" type="submit">
+                <b>LOGIN</b>
+              </MDBBtn>
+
+              <div className="divider d-flex justify-content-center align-items-center mb-3">
+                <p className="text-center fw-bold mx-3 mb-0">OR</p>
+              </div>
+
+              <MDBBtn
+                className="mb-3 w-100"
+                size="md"
+                style={{ backgroundColor: "#3b5998" }}
+                onClick={() => navigate("/register")}
+              >
+                <b>REGISTER</b>
               </MDBBtn>
             </form>
-
-            <div className="divider d-flex justify-content-center align-items-center my-4">
-              <p className="text-center fw-bold mx-3 mb-0">OR</p>
-            </div>
-
-            <MDBBtn
-              className="mb-4 w-100"
-              size="lg"
-              style={{ backgroundColor: "#3b5998" }}
-              onClick={() => navigate("/register")}
-            >
-              Register
-            </MDBBtn>
           </MDBCol>
         </MDBRow>
       </MDBContainer>
